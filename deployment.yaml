@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+        - name: React-Todo-list
+          image: pranaylamsonge/react-todo-list
+          ports:
+            - name: react-port
+              protocol: TCP
+              containerPort: 80
+  replicas: 4
+  selector:
+    matchLabels:
+      app: react-app
+  Strategy:
+    type: RollingUpdate
